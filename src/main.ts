@@ -77,7 +77,7 @@ async function deleteLabels(client: GitHubClient, owner: string, repo: string, c
 
 async function createOrUpdateLabels(client: GitHubClient, owner: string, repo: string, currentLabels: Label[], desiredLabels: Label[]) {
     for (const desiredLabel of desiredLabels) {
-        if (currentLabels.findIndex(l => l.name == desiredLabel.name) !== -1) {
+        if (currentLabels.findIndex(l => l.name == desiredLabel.name) === -1) {
             await createLabel(client, owner, repo, desiredLabel);
         } else {
             await updateLabel(client, owner, repo, desiredLabel);

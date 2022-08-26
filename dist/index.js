@@ -91,7 +91,7 @@ async function deleteLabels(client, owner, repo, currentLabels, desiredLabels) {
 }
 async function createOrUpdateLabels(client, owner, repo, currentLabels, desiredLabels) {
     for (const desiredLabel of desiredLabels) {
-        if (currentLabels.findIndex(l => l.name == desiredLabel.name) !== -1) {
+        if (currentLabels.findIndex(l => l.name == desiredLabel.name) === -1) {
             await createLabel(client, owner, repo, desiredLabel);
         }
         else {
