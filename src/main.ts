@@ -24,8 +24,6 @@ async function main() {
             repo = context.repo.repo;
         }
 
-        core.debug(`Owner ${owner}, Repo: ${repo}`);
-
         const desiredLabels = config.labels;
         const currentLabels = await getLabels(client, owner, repo);
 
@@ -63,7 +61,7 @@ async function getLabels(client: GitHubClient, owner: string, repo: string) {
         page++;
     }
 
-    core.debug(`Existing Labels: ${JSON.stringify(labels)}`);
+    core.info(`Existing Labels: ${JSON.stringify(labels)}`);
     return labels;
 }
 
@@ -86,7 +84,7 @@ async function createOrUpdateLabels(client: GitHubClient, owner: string, repo: s
 }
 
 async function createLabel(client: GitHubClient, owner: string, repo: string, label: Label) {
-    core.debug(`Label: ${label.name} is being created in ${owner}/${repo}\n${JSON.stringify(label)}`)
+    core.info(`Label: ${label.name} is being created in ${owner}/${repo}\n${JSON.stringify(label)}`)
     client.rest.issues.createLabel({
         owner: owner,
         repo: repo,
@@ -97,7 +95,7 @@ async function createLabel(client: GitHubClient, owner: string, repo: string, la
 }
 
 async function updateLabel(client: GitHubClient, owner: string, repo: string, label: Label) {
-    core.debug(`Label: ${label.name} is being updated in ${owner}/${repo}\n${JSON.stringify(label)}`)
+    core.info(`Label: ${label.name} is being updated in ${owner}/${repo}\n${JSON.stringify(label)}`)
     client.rest.issues.updateLabel({
         owner: owner,
         repo: repo,
@@ -108,7 +106,7 @@ async function updateLabel(client: GitHubClient, owner: string, repo: string, la
 }
 
 async function deleteLabel(client: GitHubClient, owner: string, repo: string, label: Label) {
-    core.debug(`Label: ${label.name} is being removed from ${owner}/${repo}`);
+    core.info(`Label: ${label.name} is being removed from ${owner}/${repo}`);
     client.rest.issues.deleteLabel({
         owner: owner,
         repo: repo,
@@ -117,7 +115,7 @@ async function deleteLabel(client: GitHubClient, owner: string, repo: string, la
 }
 
 async function loadConfig(client: GitHubClient, configPath: string) {
-    core.debug(`Loading config from ${configPath}`)
+    core.info(`Loading config from ${configPath}`)
     const configFileContents = await fetchContent(client, configPath);
 
     const config = parseYaml(configFileContents) as Config;

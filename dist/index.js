@@ -47,7 +47,6 @@ async function main() {
         if ((repo === null || repo === void 0 ? void 0 : repo.length) === 0) {
             repo = github_1.context.repo.repo;
         }
-        core.debug(`Owner ${owner}, Repo: ${repo}`);
         const desiredLabels = config.labels;
         const currentLabels = await getLabels(client, owner, repo);
         await deleteLabels(client, owner, repo, currentLabels, desiredLabels);
@@ -79,7 +78,7 @@ async function getLabels(client, owner, repo) {
         }
         page++;
     }
-    core.debug(`Existing Labels: ${JSON.stringify(labels)}`);
+    core.info(`Existing Labels: ${JSON.stringify(labels)}`);
     return labels;
 }
 async function deleteLabels(client, owner, repo, currentLabels, desiredLabels) {
@@ -100,7 +99,7 @@ async function createOrUpdateLabels(client, owner, repo, currentLabels, desiredL
     }
 }
 async function createLabel(client, owner, repo, label) {
-    core.debug(`Label: ${label.name} is being created in ${owner}/${repo}\n${JSON.stringify(label)}`);
+    core.info(`Label: ${label.name} is being created in ${owner}/${repo}\n${JSON.stringify(label)}`);
     client.rest.issues.createLabel({
         owner: owner,
         repo: repo,
@@ -110,7 +109,7 @@ async function createLabel(client, owner, repo, label) {
     });
 }
 async function updateLabel(client, owner, repo, label) {
-    core.debug(`Label: ${label.name} is being updated in ${owner}/${repo}\n${JSON.stringify(label)}`);
+    core.info(`Label: ${label.name} is being updated in ${owner}/${repo}\n${JSON.stringify(label)}`);
     client.rest.issues.updateLabel({
         owner: owner,
         repo: repo,
@@ -120,7 +119,7 @@ async function updateLabel(client, owner, repo, label) {
     });
 }
 async function deleteLabel(client, owner, repo, label) {
-    core.debug(`Label: ${label.name} is being removed from ${owner}/${repo}`);
+    core.info(`Label: ${label.name} is being removed from ${owner}/${repo}`);
     client.rest.issues.deleteLabel({
         owner: owner,
         repo: repo,
@@ -128,7 +127,7 @@ async function deleteLabel(client, owner, repo, label) {
     });
 }
 async function loadConfig(client, configPath) {
-    core.debug(`Loading config from ${configPath}`);
+    core.info(`Loading config from ${configPath}`);
     const configFileContents = await fetchContent(client, configPath);
     const config = (0, yaml_1.parse)(configFileContents);
     core.debug(`Loaded Config:\n${JSON.stringify(config)}`);
