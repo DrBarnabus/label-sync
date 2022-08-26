@@ -2,7 +2,7 @@ name: 'Label Sync'
 description: 'Synchronize labels from a file into the settings of a GitHub Repository.'
 author: 'DrBarnabus'
 inputs:
-  token:
+  github-token:
     description: 'The secrets.GITHUB_TOKEN for the repo or a valid personal access token'
     required: true
   config-path:

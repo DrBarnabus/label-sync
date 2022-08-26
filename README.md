@@ -30,14 +30,14 @@ jobs:
     name: 'Sync Labels'
     runs-on: ubuntu-latest
     steps:
-    - uses: DrBarnabus/label-sync@v0
+    - uses: DrBarnabus/label-sync@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Workflow Parameters
 
-__token__ - The GitHub API Token, for example `${{ secrets.GITHUB_TOKEN }}`
+__github-token__ - The GitHub API Token, for example `${{ secrets.GITHUB_TOKEN }}`
 __config-path__ - Optional override for the path to the configuration file. Defaults to `.github/labels.yml`
 __owner__ - Optional override for the repo owner to apply to (if not appling to this repo)
 __repo__ - Optional override for the repo to apply to (if not appling to this repo)
@@ -67,9 +67,9 @@ jobs:
       matrix:
         repo: ['repo-one', 'repo-two', 'repo-three']
     steps:
-    - uses: DrBarnabus/label-sync@v0
+    - uses: DrBarnabus/label-sync@v1
       with:
-        token: ${{ secrets.GITHUB_PAT }}
+        github-token: ${{ secrets.GITHUB_PAT }}
         owner: 'DrBarnabus'
         repo: ${{ matrix.repo }}
 ```
