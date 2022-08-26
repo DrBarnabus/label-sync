@@ -24,13 +24,13 @@ async function main() {
             repo = context.repo.repo;
         }
 
+        core.debug(`Owner ${owner}, Repo: ${repo}`);
+
         const desiredLabels = config.labels;
         const currentLabels = await getLabels(client, owner, repo);
-        core.debug(`Existing labels ${JSON.stringify(currentLabels)}`)
 
         await deleteLabels(client, owner, repo, currentLabels, desiredLabels);
         await createOrUpdateLabels(client, owner, repo, currentLabels, desiredLabels);
-
     } catch (err: any) {
         core.error(err);
         core.setFailed(err.message);
@@ -63,6 +63,7 @@ async function getLabels(client: GitHubClient, owner: string, repo: string) {
         page++;
     }
 
+    core.debug(`Existing Labels: ${JSON.stringify(labels)}`);
     return labels;
 }
 
