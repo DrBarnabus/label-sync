@@ -4,7 +4,7 @@
   "description": "A GitHub Action to synchronize labels from a file into the settings of a GitHub Repository.",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc && ncc build lib/main.js -m --target es2019",
+    "build": "tsc && ncc build lib/main.js",
     "prepare": "husky install"
   },
   "repository": {

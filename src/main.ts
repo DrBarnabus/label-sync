@@ -32,7 +32,7 @@ async function main() {
         await deleteLabels(client, owner, repo, currentLabels, desiredLabels);
         await createOrUpdateLabels(client, owner, repo, currentLabels, desiredLabels);
     } catch (err: any) {
-        core.error(err);
+        core.error(err.message);
         core.setFailed(err.message);
     }
 }
