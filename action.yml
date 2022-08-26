@@ -1,0 +1,25 @@
+name: 'Label Sync'
+description: 'Synchronize labels from a file into the settings of a GitHub Repository.'
+author: 'DrBarnabus'
+inputs:
+  token:
+    description: 'The secrets.GITHUB_TOKEN for the repo or a valid personal access token'
+    required: true
+  config-path:
+    description: 'The path to the configuration file'
+    default: '.github/labels.yml'
+    required: false
+  owner:
+    description: 'Override for the target repo owner, otherwise defaults to current repo owner'
+    required: false
+  repo:
+    description: 'Override for the target repo, otherwise defaults to current repo'
+    required: false
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+
+branding:
+  color: purple
+  icon: refresh-cw
