@@ -90,11 +90,18 @@ async function deleteLabels(client, owner, repo, currentLabels, desiredLabels) {
 }
 async function createOrUpdateLabels(client, owner, repo, currentLabels, desiredLabels) {
     for (const desiredLabel of desiredLabels) {
-        if (currentLabels.findIndex(l => l.name == desiredLabel.name) === -1) {
+        const index = currentLabels.findIndex(l => l.name == desiredLabel.name);
+        if (index === -1) {
             await createLabel(client, owner, repo, desiredLabel);
         }
         else {
-            await updateLabel(client, owner, repo, desiredLabel);
+            const currentLabel = currentLabels[index];
+            if (currentLabel.color !== desiredLabel.color || currentLabel.description != desiredLabel.description) {
+                await updateLabel(client, owner, repo, desiredLabel);
+            }
+            else {
+                core.debug(`Label: ${desiredLabel.name} is already up to date in ${owner}/${repo}\n${JSON.stringify(desiredLabel)}`);
+            }
         }
     }
 }
