@@ -95,7 +95,7 @@ async function createLabel(client: GitHubClient, owner: string, repo: string, la
         owner: owner,
         repo: repo,
         name: label.name,
-        description: label.description,
+        description: label.description ?? '',
         color: label.color
     });
 }
@@ -106,7 +106,7 @@ async function updateLabel(client: GitHubClient, owner: string, repo: string, la
         owner: owner,
         repo: repo,
         name: label.name,
-        description: label.description,
+        description: label.description ?? '',
         color: label.color
     });
 }

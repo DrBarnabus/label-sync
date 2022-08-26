@@ -106,22 +106,24 @@ async function createOrUpdateLabels(client, owner, repo, currentLabels, desiredL
     }
 }
 async function createLabel(client, owner, repo, label) {
+    var _a;
     core.info(`Label: ${label.name} is being created in ${owner}/${repo}\n${JSON.stringify(label)}`);
     client.rest.issues.createLabel({
         owner: owner,
         repo: repo,
         name: label.name,
-        description: label.description,
+        description: (_a = label.description) !== null && _a !== void 0 ? _a : '',
         color: label.color
     });
 }
 async function updateLabel(client, owner, repo, label) {
+    var _a;
     core.info(`Label: ${label.name} is being updated in ${owner}/${repo}\n${JSON.stringify(label)}`);
     client.rest.issues.updateLabel({
         owner: owner,
         repo: repo,
         name: label.name,
-        description: label.description,
+        description: (_a = label.description) !== null && _a !== void 0 ? _a : '',
         color: label.color
     });
 }
