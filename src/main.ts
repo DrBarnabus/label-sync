@@ -26,6 +26,7 @@ async function main() {
 
         const desiredLabels = config.labels;
         const currentLabels = await getLabels(client, owner, repo);
+        core.debug(`Existing labels ${JSON.stringify(currentLabels)}`)
 
         await deleteLabels(client, owner, repo, currentLabels, desiredLabels);
         await createOrUpdateLabels(client, owner, repo, currentLabels, desiredLabels);
