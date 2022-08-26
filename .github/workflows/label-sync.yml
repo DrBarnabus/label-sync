@@ -6,6 +6,8 @@ on:
     paths:
     - .github/workflows/label-sync.yml
     - .github/labels.yml
+    - dist/index.js
+    - action.yml
 
 jobs:
   label-sync:
