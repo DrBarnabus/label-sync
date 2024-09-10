@@ -1,11 +1,11 @@
 {
   "name": "@drbarnabus/label-sync",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "A GitHub Action to synchronize labels from a file into the settings of a GitHub Repository.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc && ncc build lib/main.js",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -26,14 +26,14 @@
   },
   "homepage": "https://github.com/DrBarnabus/label-sync#readme",
   "dependencies": {
-    "@actions/core": "^1.9.1",
-    "@actions/github": "^5.0.3",
-    "yaml": "^2.2.2"
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
-    "@types/node": "^18.7.13",
-    "@vercel/ncc": "^0.34.0",
-    "typescript": "^4.8.2",
-    "husky": "^8.0.0"
+    "@types/node": "^22.5.4",
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.6.2",
+    "husky": "^9.1.5"
   }
 }
